@@ -178,8 +178,6 @@ void EXTI3_IRQHandler(void)
 			{
 				LED0_OFF_Bit();
 			}
-		EXTI_ClearITPendingBit(EXTI_Line3);
-
 	}
 }
 
