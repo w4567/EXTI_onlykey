@@ -48,7 +48,7 @@ int main(void)
 	
 	KEY_Init();
 	
-    LED_Init();
+    //LED_Init();
 	
 	
 	
