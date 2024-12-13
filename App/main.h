@@ -7,4 +7,5 @@
 	
 	#include "systick.h"
 
+extern uint8_t NVIC_Priority_cont_err;
 #endif

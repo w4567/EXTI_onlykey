@@ -38,8 +38,8 @@
 
 #define		LED1_ON_Bit()		GPIO_ResetBits(LED1_PORT,LED1_GPIO_PIN)
 #define		LED1_OFF_Bit()		GPIO_SetBits(LED1_PORT,LED1_GPIO_PIN)
-#define	LED0_TOGGLE()	(GPIO_WriteBit(LED0_PORT, LED0_GPIO_PIN, (BitAction)(1 - GPIO_ReadOutputDataBit(LED0_PORT, LED0_GPIO_PIN))))
-#define	LED1_TOGGLE()	(GPIO_WriteBit(LED1_PORT, LED0_GPIO_PIN, (BitAction)(1 - GPIO_ReadOutputDataBit(LED1_PORT, LED0_GPIO_PIN))))
+#define		LED0_TOGGLE()	(GPIO_WriteBit(LED0_PORT, LED0_GPIO_PIN, (BitAction)(1 - GPIO_ReadOutputDataBit(LED0_PORT, LED0_GPIO_PIN))))
+#define		LED1_TOGGLE()	(GPIO_WriteBit(LED1_PORT, LED0_GPIO_PIN, (BitAction)(1 - GPIO_ReadOutputDataBit(LED1_PORT, LED0_GPIO_PIN))))
 
 
 void LED_Init(void);

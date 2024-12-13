@@ -6,6 +6,9 @@
 #include "led.h"
 #include "misc.h"
 #include "SysTick.h"
+#include "stm32f10x_conf.h"
+#include "main.h"
+#include "app_rtt_log.h"
 /**KEY_Init
   * @brief  KEY_EXTI≥ı ºªØ
   *         
@@ -69,13 +72,13 @@ void GPIO_EXTI_LineConfig(void)
 
 void NVIC_Config(void)
 {
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	
-	NVIC_InitTypeDef NVIC_InitStruct;
-	NVIC_InitStruct.NVIC_IRQChannel = EXTI4_IRQn;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority=1 ;
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority =0; 
-	NVIC_InitStruct.NVIC_IRQChannelCmd =ENABLE;
+	NVIC_InitTypeDef NVIC_InitStruct = {
+	.NVIC_IRQChannel = EXTI4_IRQn,
+	.NVIC_IRQChannelPreemptionPriority=1 ,
+	.NVIC_IRQChannelSubPriority =0,
+	.NVIC_IRQChannelCmd =ENABLE,
+	};
 	NVIC_Init(&NVIC_InitStruct);
 	
 	NVIC_InitStruct.NVIC_IRQChannel = EXTI3_IRQn;
@@ -88,6 +91,7 @@ void NVIC_Config(void)
 void EXTI_Config(void)
 {
 	//EXTI_ClearITPendingBit(EXTI_Line4);
+	//
 	EXTI_InitTypeDef EXTI_InitStruct;
 	EXTI_InitStruct.EXTI_Line = EXTI_Line4;
 	EXTI_InitStruct.EXTI_Mode=EXTI_Mode_Interrupt;
@@ -95,12 +99,17 @@ void EXTI_Config(void)
 	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStruct);
 	
+	EXTI_Line_ENABLE(EXTI_Line4);
+	
 	//EXTI_ClearITPendingBit(EXTI_Line3);
 	EXTI_InitStruct.EXTI_Line = EXTI_Line3;
 	EXTI_InitStruct.EXTI_Mode=EXTI_Mode_Interrupt;
 	EXTI_InitStruct.EXTI_Trigger=EXTI_Trigger_Rising;
 	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStruct);
+	
+	EXTI_Line_ENABLE(EXTI_Line3);
+	
 }
 
 

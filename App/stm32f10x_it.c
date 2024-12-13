@@ -26,6 +26,7 @@
 #include "key_exti.h"
 #include "led.h"
 #include "SysTick.h"
+#include "app_rtt_log.h"
 /** @addtogroup STM32F10x_StdPeriph_Examples
   * @{
   */
@@ -165,19 +166,16 @@ void SysTick_Handler(void)
 
 void EXTI3_IRQHandler(void)
 {
+	APP_LOG_Printf("in exti3 111111111111111111111111111111");
 	if(EXTI_GetITStatus(EXTI_Line3)==SET)
 	{
+		APP_LOG_Printf("in exti3 2222222222222222222222");
+		if((KEY1) ==0)
+			{
+				LED1_TOGGLE();
+			}
 		EXTI_ClearITPendingBit(EXTI_Line3);
-		DelayXms(20);
-		if(GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4) ==Bit_RESET)
-		
-			{
-				LED0_ON_Bit();
-			}
-			else 
-			{
-				LED0_OFF_Bit();
-			}
+
 	}
 }
 
@@ -186,14 +184,9 @@ void EXTI4_IRQHandler(void)
 	if(EXTI_GetITStatus(EXTI_Line4)==SET)
 	{
 	EXTI_ClearITPendingBit(EXTI_Line4);
-		DelayXms(20);
-		if(GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_3)==Bit_RESET)
+		if((KEY0)==0)
 			{
-				LED1_ON_Bit();
-			}
-			else
-			{
-				LED1_OFF_Bit();
+				LED0_TOGGLE();
 			}
 		
 	}

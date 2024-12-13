@@ -6,10 +6,11 @@
 #include "led.h"
 #include "key_exti.h"
 #include "stm32f10x_it.h"
+#include "app_rtt_log.h"
+#include "stm32f10x_conf.h"
 /* Includes ------------------------------------------------------------------*/
-
 /* Private typedef -----------------------------------------------------------*/
-
+uint8_t NVIC_Priority_cont_err = 0;
 /* Private define ------------------------------------------------------------*/
 
 /* Private macro -------------------------------------------------------------*/
@@ -36,9 +37,23 @@ int main(void)
 	
 	//初始化SysTick定时器
 	SysTick_Init();
-	KEY_Init();
-    LED_Init();   
 	
+	
+	//中断优先级分组
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	if((NVIC_Priority_cont_err++) > 0) {
+		
+		assert_failed(__FILE__,__LINE__);
+	}
+	
+	KEY_Init();
+	
+    LED_Init();
+	
+	
+	
+	
+	APP_LOG_Printf("exti star");
 	while (1)
 	{
 		;
@@ -57,8 +72,9 @@ int main(void)
 void assert_failed(uint8_t* file, uint32_t line)
 { 
   /* User can add his own implementation to report the file name and line number,
+	assert_failed(__FILE__,__LINE__);
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
+	APP_LOG_Printf("Wrong parameters value: file %s on line %d\r\n", file, line);
   /* Infinite loop */
   while (1)
   {

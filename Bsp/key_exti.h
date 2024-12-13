@@ -38,18 +38,21 @@
 #define		KEY1_EXTI_PORT		GPIO_PortSourceGPIOE	
 #define		KEY0_EXTI_PIN		GPIO_PinSource4
 #define		KEY1_EXTI_PIN		GPIO_PinSource3
-
-#define	ReadKey0()		(GPIO_ReadInputDataBit(KEY0_PORT, KEY0_GPIO_PIN))
-#define	ReadKey1()		(GPIO_ReadInputDataBit(KEY1_PORT, KEY0_GPIO_PIN))
-
+	
+#define KEY0			(GPIO_ReadInputDataBit(KEY0_PORT, KEY0_GPIO_PIN))
+#define KEY1 			(GPIO_ReadInputDataBit(KEY1_PORT, KEY0_GPIO_PIN))
 
 /*****************外设操作函数原型声明****************************************************/
+
+#define EXTI_Line_ENABLE(EXTI_Linex)  (EXTI->IMR |= EXTI_Linex)
+#define EXTI_Line_DISABLE(EXTI_Linex)  (EXTI->IMR &= ~(EXTI_Linex))
+		
 	void KEY_Init(void);
 	void KEY_GPIO_Config(void);
 	void KEY_Pcssoer(void);
 	void EXTI_Config(void);
 	void NVIC_Config(void);
 	void GPIO_EXTI_LineConfig(void);
-	void KEY_Process(void);
+	//void KEY_Process(void);
 #endif
 
