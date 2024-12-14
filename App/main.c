@@ -48,15 +48,13 @@ int main(void)
 	
 	KEY_Init();
 	
-    //LED_Init();
-	
-	
-	
+    LED_Init();
 	
 	APP_LOG_Printf("exti star");
+	
 	while (1)
 	{
-		;
+		
 	}
 }
 
