@@ -36,14 +36,14 @@ void LED_GPIO_Config(void)
 	
 	GPIO_InitTypeDef GPIO_InitStructB = {
 		.GPIO_Pin = LED0_GPIO_PIN,
-		.GPIO_Mode = GPIO_Mode_Out_OD,
+		.GPIO_Mode = GPIO_Mode_Out_PP,
 		.GPIO_Speed = GPIO_Speed_2MHz,
 	};
 	GPIO_Init(GPIOB,&GPIO_InitStructB);
 	
 	GPIO_InitTypeDef GPIO_InitStructE = {
 		.GPIO_Pin = LED1_GPIO_PIN,
-		.GPIO_Mode = GPIO_Mode_Out_OD,
+		.GPIO_Mode = GPIO_Mode_Out_PP,
 		.GPIO_Speed = GPIO_Speed_2MHz,
 	};
 	GPIO_Init(GPIOE,&GPIO_InitStructE);
