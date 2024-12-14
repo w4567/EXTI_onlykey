@@ -67,6 +67,7 @@ void KEY_GPIO_Config(void)
 
 void GPIO_EXTI_LineConfig(void)
 {
+	
 	//KEY0:EXTI4
 	GPIO_EXTILineConfig(KEY0_EXTI_PORT, KEY0_EXTI_PIN);
 	//KEY1:EXTI3
@@ -99,6 +100,7 @@ void EXTI_Config(void)
 	EXTI_InitTypeDef EXTI_InitStruct;
 	EXTI_InitStruct.EXTI_Line = EXTI_Line4;
 	EXTI_InitStruct.EXTI_Mode=EXTI_Mode_Interrupt;
+	 //设置输入线路下降沿为中断请求,设置为EXTI_Trigger_Rising上升沿为中断请求无效
 	EXTI_InitStruct.EXTI_Trigger=EXTI_Trigger_Rising;
 	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStruct);
@@ -107,7 +109,11 @@ void EXTI_Config(void)
 	
 	//EXTI_ClearITPendingBit(EXTI_Line3);
 	EXTI_InitStruct.EXTI_Line = EXTI_Line3;
+	
 	EXTI_InitStruct.EXTI_Mode=EXTI_Mode_Interrupt;
+	//
+	
+	//
 	EXTI_InitStruct.EXTI_Trigger=EXTI_Trigger_Rising;
 	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStruct);

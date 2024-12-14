@@ -39,8 +39,8 @@
 #define		KEY0_EXTI_PIN		GPIO_PinSource4
 #define		KEY1_EXTI_PIN		GPIO_PinSource3
 	
-#define KEY0			(GPIO_ReadInputDataBit(KEY0_PORT, KEY0_GPIO_PIN))
-#define KEY1 			(GPIO_ReadInputDataBit(KEY1_PORT, KEY0_GPIO_PIN))
+#define  KEY0_Read			(GPIO_ReadInputDataBit(KEY0_PORT, KEY0_GPIO_PIN))
+#define  KEY1_Read 			(GPIO_ReadInputDataBit(KEY1_PORT, KEY0_GPIO_PIN))
 
 /*****************外设操作函数原型声明****************************************************/
 
