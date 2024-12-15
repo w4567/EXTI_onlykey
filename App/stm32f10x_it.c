@@ -170,7 +170,6 @@ void EXTI3_IRQHandler(void)
 	if(EXTI_GetITStatus(EXTI_Line3)==SET)
 	{
 		APP_LOG_Printf("in exti3 2222222222222222222222");
-		if((KEY1_Read) ==0)
 			{
 				LED1_TOGGLE();
 			}
@@ -183,19 +182,33 @@ void EXTI4_IRQHandler(void)
 {
 	//
 	APP_LOG_Printf("in exti4 111111111111111111111111111111");
-
 	if(EXTI_GetITStatus(EXTI_Line4)==SET)
 	{
 		EXTI_ClearITPendingBit(EXTI_Line4);
 		APP_LOG_Printf("in exti4 2222222222222222222222");
 
-		if((KEY0_Read)==0)
+		//if((KEY0_Read)==1)
 		{
 			LED0_TOGGLE();
 		}
 
 	}
 }
+
+void EXTI0_IRQHandler(void)
+{
+	APP_LOG_Printf("WK_UP 000000000000000000000000000000");
+	if(EXTI_GetITStatus(EXTI_Line0)==SET)
+	{
+		EXTI_ClearITPendingBit(EXTI_Line0);
+		APP_LOG_Printf("WK_UP upupupupupupupupupupupupup");
+		{
+			LED0_TOGGLE();
+			LED1_TOGGLE();
+		}
+	}
+}
+
 /**
   * @}
   */

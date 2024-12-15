@@ -40,7 +40,7 @@ int main(void)
 	
 	
 	//中断优先级分组
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_3);
 	if((NVIC_Priority_cont_err++) > 0) {
 		
 		assert_failed(__FILE__,__LINE__);

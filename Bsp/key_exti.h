@@ -36,8 +36,10 @@
 	//GPIO作为外设端口引脚
 #define 	KEY0_EXTI_PORT		GPIO_PortSourceGPIOE
 #define		KEY1_EXTI_PORT		GPIO_PortSourceGPIOE	
+#define		WK_UP_EXTI_PORT		GPIO_PortSourceGPIOA	
 #define		KEY0_EXTI_PIN		GPIO_PinSource4
 #define		KEY1_EXTI_PIN		GPIO_PinSource3
+#define		WK_UP_EXTI_PIN		GPIO_PinSource0
 	
 #define  KEY0_Read			(GPIO_ReadInputDataBit(KEY0_PORT, KEY0_GPIO_PIN))
 #define  KEY1_Read 			(GPIO_ReadInputDataBit(KEY1_PORT, KEY0_GPIO_PIN))

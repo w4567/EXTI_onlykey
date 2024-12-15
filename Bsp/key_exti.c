@@ -65,6 +65,16 @@ void KEY_GPIO_Config(void)
 	GPIO_Init(WK_UP_PORT,&GPIOA_Initstructure);
 }
 
+/**
+  * @brief  EXTI_Line中断线配置
+  *         
+  * @param  none
+  *   
+  * @retval none
+  *         
+  *noet	外设操作函数定义
+  */
+
 void GPIO_EXTI_LineConfig(void)
 {
 	
@@ -72,8 +82,20 @@ void GPIO_EXTI_LineConfig(void)
 	GPIO_EXTILineConfig(KEY0_EXTI_PORT, KEY0_EXTI_PIN);
 	//KEY1:EXTI3
 	GPIO_EXTILineConfig(KEY1_EXTI_PORT, KEY1_EXTI_PIN);
+	//WK_UP:EXTI0
+	GPIO_EXTILineConfig(WK_UP_EXTI_PORT, WK_UP_EXTI_PIN);
 
 }
+
+/**
+  * @brief  NVIC配置
+  *         
+  * @param  none
+  *   
+  * @retval none
+  *         
+  *noet	外设操作函数定义
+  */
 
 void NVIC_Config(void)
 {
@@ -91,12 +113,28 @@ void NVIC_Config(void)
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority =0; 
 	NVIC_InitStruct.NVIC_IRQChannelCmd =ENABLE;
 	NVIC_Init(&NVIC_InitStruct);
+	
+	NVIC_InitStruct.NVIC_IRQChannel = EXTI0_IRQn ;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority=3 ;
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority =0; 
+	NVIC_InitStruct.NVIC_IRQChannelCmd =ENABLE;
+	NVIC_Init(&NVIC_InitStruct);
 }
+
+/**
+  * @brief  EXTI配置
+  *         
+  * @param  none
+  *   
+  * @retval none
+  *         
+  *noet	外设操作函数定义
+  */
 
 void EXTI_Config(void)
 {
 	//EXTI_ClearITPendingBit(EXTI_Line4);
-	//
+	//KEY0
 	EXTI_InitTypeDef EXTI_InitStruct;
 	EXTI_InitStruct.EXTI_Line = EXTI_Line4;
 	EXTI_InitStruct.EXTI_Mode=EXTI_Mode_Interrupt;
@@ -104,21 +142,24 @@ void EXTI_Config(void)
 	EXTI_InitStruct.EXTI_Trigger=EXTI_Trigger_Rising;
 	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStruct);
-	
 	EXTI_Line_ENABLE(EXTI_Line4);
 	
+	//KEY1
 	//EXTI_ClearITPendingBit(EXTI_Line3);
 	EXTI_InitStruct.EXTI_Line = EXTI_Line3;
-	
 	EXTI_InitStruct.EXTI_Mode=EXTI_Mode_Interrupt;
-	//
-	
-	//
 	EXTI_InitStruct.EXTI_Trigger=EXTI_Trigger_Rising;
 	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStruct);
-	
 	EXTI_Line_ENABLE(EXTI_Line3);
+	
+	//WK_UP
+	EXTI_InitStruct.EXTI_Line = EXTI_Line0;
+	EXTI_InitStruct.EXTI_Mode=EXTI_Mode_Interrupt;
+	EXTI_InitStruct.EXTI_Trigger=EXTI_Trigger_Rising;
+	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+	EXTI_Init(&EXTI_InitStruct);
+	EXTI_Line_ENABLE(EXTI_Line0);
 	
 }
 
